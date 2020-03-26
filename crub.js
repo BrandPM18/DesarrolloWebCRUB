@@ -26,14 +26,26 @@ function data(provincias, poblacion, infectado){
 }
 
 
-//function New_Data()
-let provinciasT =[];
-for(let i=0;i<provincias2020.length;i++){
-    provinciasT[i]= new Provincias(provincias2020[i],poblacion2020[i],infectados2020[i]);
-    data(provinciasT[i].provincias,provinciasT[i].poblacion,provinciasT[i].infectados);
-    //document.write("<tr>")
+function CreatP(){
+
 }
-console.log(provinciasT);
+function ReadD(){
+    let provinciasT =[];
+    for(let i=0;i<provincias2020.length;i++){
+        provinciasT[i]= new Provincias(provincias2020[i],poblacion2020[i],infectados2020[i]);
+        data(provinciasT[i].provincias,provinciasT[i].poblacion,provinciasT[i].infectados);
+    }
+    //console.log(provinciasT);
+}
+function Update(){
+
+}
+function Delete(){
+
+}
+
+
+
 
 //poblacion.push
 
