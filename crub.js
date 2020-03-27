@@ -14,9 +14,27 @@ class Provincias {
          return this.infectados;
     }
 }
+//Llenado de datos iniciales
 let provinciasT=[];
 for(let i=0;i<provincias2020.length;i++){
     provinciasT[i]= new Provincias(provincias2020[i],poblacion2020[i],infectados2020[i]);
+}
+function Final(i){
+    var provincia = document.getElementById("inputU").value;
+    var poblacion = document.getElementById("inputPobU").value;
+    var infectado = document.getElementById("inputInfU").value;
+    if(provincia.length==0 || infectado.length==0 || poblacion.length==0){
+        window.alert("Datos Incompletos");
+    }
+    else{
+            console.log(provincia.value);
+            console.log(poblacion.value);
+            console.log(infectado.value);
+            provinciasT[i].provincias=provincia;  
+            provinciasT[i].poblacion=poblacion;
+            provinciasT[i].infectados=infectado;
+            ReadD();
+        }
 }
 /*
 function data(provincias, poblacion, infectado){
@@ -32,44 +50,105 @@ function data(provincias, poblacion, infectado){
 */
 //CRUD
 function CreatP(){
-    var inputAdd = document.getElementById("inputAdd").value;
-    var inputPob = document.getElementById("inputPob").value;
-    var inputInf = document.getElementById("inputInf").value;
-    if(inputAdd.length!=0 && inputInf.length!=0 && inputPob.length!=0){
-        provinciasT[provinciasT.length+1]=new Provincias(inputAdd.value,inputPob.value,inputInf.value);
-        ReadD();
+    var provincia = document.getElementById("inputAdd").value;
+    var poblacion = document.getElementById("inputPob").value;
+    var infectado = document.getElementById("inputInf").value;
+    if(provincia.length==0 || infectado.length==0 || poblacion.length==0){
+        window.alert("Datos Incompletos");
     }
     else{
-        window.alert("Nombre Invalido");
+        //con funcion flecha
+        if(provinciasT.find(item => item.provincias==provincia)){
+            alert(provincia+" se encuentra en la lista eliga otro")
+        }
+        else{
+            console.log(provincia.value);
+            console.log(poblacion.value);
+            console.log(infectado.value);
+            provinciasT.push(new Provincias(provincia,poblacion,infectado));
+            ReadD();
+        }
+        /*
+        //con funcion normal find()
+        if(provinciasT.find(function(item){
+           return item.provincias == provincia; 
+        }
+        )) alert(provincia + "se encuentra en la lista eliga otro")
+        */
     }
 }
 function ReadD(){
     lista.innerHTML=` <table class="table" style="width: 20%">
     <tr>
+    <theader>
     <th scope="col">#</th>
     <th scope="col">Provincia</th>
     <th scope="col">Poblacion</th>
     <th scope="col">Infectados</th> 
     </tr>
-    </table>
+    </theader>
     `
     for(let i=0;i<provinciasT.length;i++){
         lista.innerHTML+= `
         <table class="table" style="width: 20%">
-    </tr>  
+        <tbody>
         <tr>     
             <th scope="row">${i+1}</th>  
             <td>${provinciasT[i].provincias}</td>
             <td>${provinciasT[i].poblacion}</td>
-            <td>${provinciasT[i].infectados}</td>          
+            <td>${provinciasT[i].infectados}</td>
+            <td><button onclick="Update(${i})">Cambiar</button></td>
+            <td><button onclick="Delete(${i})">Eliminar</button></td>          
         </tr>
         `
     }
-    lista.innerHTML+= `</table>`
+    lista.innerHTML+= `</tbody></table>`
 }
-function Update(){
-
+function Update(i){
+    lista.innerHTML=` <table class="table" style="width: 20%">
+    <tr>
+    <theader>
+    <th scope="col">#</th>
+    <th scope="col">Provincia</th>
+    <th scope="col">Poblacion</th>
+    <th scope="col">Infectados</th> 
+    </tr>
+    </theader>
+    `
+    for(let k=0;k<provinciasT.length;k++){
+        if(k==i){
+            lista.innerHTML+= `
+            <table class="table" style="width: 20%">
+            <tbody>
+            <tr>     
+                <th scope="row">${k+1}</th>  
+                <td><input name="nombre" id="inputU" type="text" placeholder="${provinciasT[k].provincias}"></td>
+                <td><input name="poblacion" id="inputPobU" type="number" placeholder="${provinciasT[k].poblacion}"></td>
+                <td> <input name="Infectados" id="inputInfU" type="number" placeholder="${provinciasT[k].infectados}"></td>
+                <td><button onclick="Final(${k})">Aceptar</button></td>
+                <td><button onclick="Delete(${k})">Eliminar</button></td>          
+            </tr>
+            `    
+        }
+        else{
+            lista.innerHTML+= `
+            <table class="table" style="width: 20%">
+            <tbody>
+            <tr>     
+                <th scope="row">${k+1}</th>  
+                <td>${provinciasT[k].provincias}</td>
+                <td>${provinciasT[k].poblacion}</td>
+                <td>${provinciasT[k].infectados}</td>
+                <td><button onclick="Update(${k})">Cambiar</button></td>
+                <td><button onclick="Delete(${k})">Eliminar</button></td>          
+            </tr>
+            `
+        }
+    }
+    lista.innerHTML+= `</tbody></table>`
 }
-function Delete(){
-
+function Delete(i){
+provinciasT.splice(i,1);
+console.info(provinciasT);
+ReadD();
 }
