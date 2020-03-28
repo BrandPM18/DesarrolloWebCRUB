@@ -24,16 +24,20 @@ function Final(i){
     var poblacion = document.getElementById("inputPobU").value;
     var infectado = document.getElementById("inputInfU").value;
     if(provincia.length==0 || infectado.length==0 || poblacion.length==0){
-        window.alert("Datos Incompletos");
+        //window.alert("Datos Incompletos");
+        ReadD();
+        // Si le das aceptar no se actualiza nada de esa forma tbm sales del cambio
     }
     else{
-            console.log(provincia.value);
-            console.log(poblacion.value);
-            console.log(infectado.value);
+        if(provinciasT.find(item => item.provincias==provincia) && provinciasT[i].provincias!=provincia){
+            alert(provincia+" se encuentra en la lista eliga otro")
+        }
+        else{
             provinciasT[i].provincias=provincia;  
             provinciasT[i].poblacion=poblacion;
             provinciasT[i].infectados=infectado;
             ReadD();
+        }
         }
 }
 /*
