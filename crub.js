@@ -101,8 +101,8 @@ function ReadD(){
             <td>${provinciasT[i].provincias}</td>
             <td>${provinciasT[i].poblacion}</td>
             <td>${provinciasT[i].infectados}</td>
-            <td><button onclick="Update(${i})">Cambiar</button></td>
-            <td><button onclick="Delete(${i})">Eliminar</button></td>          
+            <td><button class="btn-secondary" onclick="Update(${i})">Cambiar</button></td>
+            <td><button class="btn-secondary" onclick="Delete(${i})">Eliminar</button></td>          
         </tr>
         `
     }
