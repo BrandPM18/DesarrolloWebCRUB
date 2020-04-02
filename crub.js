@@ -2,7 +2,6 @@ let provincias2020 = ['Lima','Piura','Loreto','Junín','Arequipa','Callao','Lamb
 let poblacion2020 = [9485405,1856809,883510,1246038,1382730,994494,1197260,1205527,1778080,1083519,224863,850765,141070,813381];
 let infectados2020 = [322,19,16,10,9,8,7,6,5,4,3,2,2,1,1];
 let lista=document.getElementById("lista");
-
 class Provincias {
     constructor(provincias,poblacion,infectados){
         this.provincias = provincias;
@@ -66,9 +65,6 @@ function CreatP(){
             alert(provincia+" se encuentra en la lista eliga otro")
         }
         else{
-            console.log(provincia.value);
-            console.log(poblacion.value);
-            console.log(infectado.value);
             provinciasT.push(new Provincias(provincia,poblacion,infectado));
             ReadD();
         }
@@ -82,77 +78,53 @@ function CreatP(){
     }
 }
 function ReadD(){
-    lista.innerHTML=` <table class="table" style="width: 20%">
-    <tr>
-    <theader>
-    <th scope="col">#</th>
-    <th scope="col">Provincia</th>
-    <th scope="col">Poblacion</th>
-    <th scope="col">Infectados</th> 
-    </tr>
-    </theader>
-    `
+
+    lista.innerHTML = ''
     for(let i=0;i<provinciasT.length;i++){
-        lista.innerHTML+= `
-        <table class="table" style="width: 20%">
-        <tbody>
-        <tr>     
-            <th scope="row">${i+1}</th>  
-            <td>${provinciasT[i].provincias}</td>
-            <td>${provinciasT[i].poblacion}</td>
-            <td>${provinciasT[i].infectados}</td>
-            <td><button class="btn-secondary" onclick="Update(${i})">Cambiar</button></td>
-            <td><button class="btn-secondary" onclick="Delete(${i})">Eliminar</button></td>          
-        </tr>
-        `
+    let newRow = lista.insertRow();
+    let newC1 = newRow.insertCell();
+    let newC2 = newRow.insertCell();
+    let newC3 = newRow.insertCell();
+    let newC4 = newRow.insertCell();
+    let newC5 = newRow.insertCell();
+    let newC6 = newRow.insertCell();
+    newC1.innerHTML = i+1;
+    newC2.innerHTML = provinciasT[i].provincias;  
+    newC3.innerHTML = provinciasT[i].poblacion;  
+    newC4.innerHTML = provinciasT[i].infectados;  
+    newC5.innerHTML = `<button class="btn btn-danger" onclick="Update(${i})">Cambiar</button>` 
+    newC6.innerHTML = `<button class="btn btn-danger" onclick="Delete(${i})">Eliminar</button>`
     }
-    lista.innerHTML+= `</tbody></table>`
 }
 function Update(i){
-    lista.innerHTML=` <table class="table" style="width: 20%">
-    <tr>
-    <theader>
-    <th scope="col">#</th>
-    <th scope="col">Provincia</th>
-    <th scope="col">Poblacion</th>
-    <th scope="col">Infectados</th> 
-    </tr>
-    </theader>
-    `
+    lista.innerHTML = ''
     for(let k=0;k<provinciasT.length;k++){
+        let newRow = lista.insertRow();
+        let newC1 = newRow.insertCell();
+        let newC2 = newRow.insertCell();
+        let newC3 = newRow.insertCell();
+        let newC4 = newRow.insertCell();
+        let newC5 = newRow.insertCell();
+        let newC6 = newRow.insertCell();
         if(k==i){
-            lista.innerHTML+= `
-            <table class="table" style="width: 20%">
-            <tbody>
-            <tr>     
-                <th scope="row">${k+1}</th>  
-                <td><input name="nombre" id="inputU" type="text" placeholder="${provinciasT[k].provincias}"></td>
-                <td><input name="poblacion" id="inputPobU" type="number" placeholder="${provinciasT[k].poblacion}"></td>
-                <td> <input name="Infectados" id="inputInfU" type="number" placeholder="${provinciasT[k].infectados}"></td>
-                <td><button onclick="Final(${k})">Aceptar</button></td>
-                <td><button onclick="Delete(${k})">Eliminar</button></td>          
-            </tr>
-            `    
+            newC1.innerHTML = k+1;
+            newC2.innerHTML = `<input size="10" name="nombre" id="inputU" type="text" placeholder="${provinciasT[k].provincias}">`
+            newC3.innerHTML = `<input min="0" max="100000000" name="poblacion" id="inputPobU" type="number" placeholder="${provinciasT[k].poblacion}">`
+            newC4.innerHTML = `<input min="0" max="100000000" name="Infectados" id="inputInfU" type="number" placeholder="${provinciasT[k].infectados}">`
+            newC5.innerHTML = `<button class="btn btn-danger" onclick="Final(${k})">Aceptar</button>`
+            newC6.innerHTML = `<button class="btn btn-danger" onclick="Delete(${k})">Eliminar</button>`
         }
         else{
-            lista.innerHTML+= `
-            <table class="table" style="width: 20%">
-            <tbody>
-            <tr>     
-                <th scope="row">${k+1}</th>  
-                <td>${provinciasT[k].provincias}</td>
-                <td>${provinciasT[k].poblacion}</td>
-                <td>${provinciasT[k].infectados}</td>
-                <td><button onclick="Update(${k})">Cambiar</button></td>
-                <td><button onclick="Delete(${k})">Eliminar</button></td>          
-            </tr>
-            `
+            newC1.innerHTML = k+1;
+            newC2.innerHTML = provinciasT[k].provincias;
+            newC3.innerHTML = provinciasT[k].poblacion;
+            newC4.innerHTML = provinciasT[k].infectados;
+            newC5.innerHTML = `<button class="btn btn-danger" onclick="Update(${k})">Cambiar</button>`
+            newC6.innerHTML = `<button class="btn btn-danger" onclick="Delete(${k})">Eliminar</button>` 
         }
     }
-    lista.innerHTML+= `</tbody></table>`
 }
 function Delete(i){
 provinciasT.splice(i,1);
-console.info(provinciasT);
 ReadD();
 }

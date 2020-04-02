@@ -14,25 +14,41 @@
     <div class="container">
         <h1 class="display-3">Lista de Infeccion por Cov-19 Peru</h1>
         <hr>
-        <p>Ingrese los datos de provincias del Peru:</p>
+        <p class="lead">Ingrese los datos de provincias del Peru:</p>
+
         <!--
         <p id="demo">Ingrese sus datos</p>
         <button type="button" onclick="document.getElementById('demo').innerHTML = 'Aceptado!!'">Aceptar!</button>
         <button type="button" onclick="console.log('algo')">Aceptar!</button>
         -->
         <label for="nombre">Nombre de Provincia:</label>
-        <input name="nombre" id="inputAdd" type="text" placeholder="Ejm Lima">
-        <label for="poblacion">Numero de poblacion:</label>
-        <input name="poblacion" id="inputPob" type="number" placeholder="Ejm 340245">
-        <label for="Infectados">Numero de Infectados:</label>
-        <input name="Infectados" id="inputInf" type="number" placeholder="Ejm 345">
-        <button class="btn btn-danger" onclick="CreatP()">Añadir</button>
-        <p id="demo"></p>
+        <input name="nombre" id="inputAdd" type="text" size="10" placeholder="Ejm Lima">
         <hr>
+        <label for="poblacion">Numero de poblacion:</label>
+        <input name="poblacion" id="inputPob" type="number" min="0" max="100000000" placeholder="Ejm 340245">
+        <hr>
+        <label for="Infectados">Numero de Infectados:</label>
+        <input name="Infectados" id="inputInf" type="number" min="0" max="100000000" placeholder="Ejm 345">
         
-        
-        <div id="lista">
-        </div>
+        <button type="submit" class="btn btn-danger" onclick="CreatP()">Añadir</button>
+        <p id="demo"></p>    
+        <!--<div id="lista"></div>-->        
+        <table class="table" style="width: 100%">
+                <tr>
+                <theader>
+                <th scope="col">#</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Poblacion</th>
+                <th scope="col">Infectados</th> 
+                <th></th>
+                <th></th>
+                </tr>
+                </theader>
+                <tbody id="lista">
+
+                </tbody>
+        </table>
+
         <script src="crub.js"></script>
         <hr>
         <blockquote class="blockquote text-center">
@@ -40,8 +56,8 @@
         <footer class="blockquote-footer">David Heinemeier Hansson - <cite title="Wikipedia">Creador de Ruby</cite></footer>    
         </blockquote>
         <hr>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
